@@ -1,5 +1,17 @@
 from rest_framework import serializers
-from .models import Order, CardItem
+from .models import Order, CardItem, Slider, Campaign
+
+
+class SliderSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Slider
+        fields = ['id', 'name', 'get_image', 'title']
+
+
+class CampaignSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Campaign
+        fields = ['name', 'get_image']
 
 
 class CardItemSerializer(serializers.ModelSerializer):

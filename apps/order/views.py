@@ -1,6 +1,6 @@
 from rest_framework import generics, permissions, response, views
-from .serializers import OrderSerializer, CardItemSerializer, OrderListSerializer
-from .models import Order, CardItem
+from .serializers import OrderSerializer, CardItemSerializer, OrderListSerializer, SliderSerializer, CampaignSerializer
+from .models import Order, CardItem, Campaign, Slider
 import stripe
 from django.conf import settings
 from django.shortcuts import redirect
@@ -55,3 +55,13 @@ class OrderListAPI(generics.ListAPIView):
 class CardItemAPI(generics.CreateAPIView):
     queryset = CardItem.objects.all()
     serializer_class = CardItemSerializer
+
+
+class SliderAPI(generics.ListAPIView):
+    queryset = Slider.objects.all()
+    serializer_class = SliderSerializer
+
+
+class CampaignAPI(generics.ListAPIView):
+    queryset = Campaign.objects.all()
+    serializer_class = CampaignSerializer

@@ -1,11 +1,16 @@
 from django.contrib import admin
-from .models import Category, Subcategory, Product, ProductImage, Color, Brand
+from .models import Category, Subcategory, Product, ProductImage, Color, Brand, ThreeSubcategory
 from .translation import CustomTranslationsAdmin
 
 
 @admin.register(Category)
 class CategoryAdmin(CustomTranslationsAdmin):
-    list_display = ['id']
+    list_display = ['id', 'name']
+
+
+@admin.register(ThreeSubcategory)
+class CategoryAdmin(admin.ModelAdmin):
+    list_display = ['id', 'subcategory']
 
 
 @admin.register(Brand)
@@ -20,7 +25,7 @@ class CategoryAdmin(admin.ModelAdmin):
 
 @admin.register(Subcategory)
 class CategoryAdmin(CustomTranslationsAdmin):
-    list_display = ['id']
+    list_display = ['id', 'category']
 
 
 class ProductImageInline(admin.TabularInline):

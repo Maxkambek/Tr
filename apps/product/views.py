@@ -1,8 +1,20 @@
 from rest_framework import generics, views, response
-from .models import Product, Category, Color, Brand, Subcategory
+from .models import Product, Category, Color, Brand, Subcategory, ThreeSubcategory
 from .serializers import ProductSerializer, ProductDetailSerializer, CategorySerializer, ColorSerializer, \
-    BrandSerializer, SubcategorySerializer
+    BrandSerializer, SubcategorySerializer, ThreeSubcategorySerializer
 from django.db.models import Q
+
+
+class ThreeSubcategoryAPI(generics.ListAPIView):
+    queryset = ThreeSubcategory.objects.all()
+    serializer_class = ThreeSubcategorySerializer
+
+    def get_queryset(self):
+        cat = self.request.query_params.get('cat')
+        if cat:
+            qs = self.queryset.filter(subcategory_id=cat)
+            return qs
+        return self.queryset.all()
 
 
 class SubcategoryAPI(generics.ListAPIView):
@@ -12,11 +24,17 @@ class SubcategoryAPI(generics.ListAPIView):
     def get_queryset(self):
         cat = self.request.query_params.get('cat')
         if cat:
-            qs = self.queryset.filter(category__name__exact=cat)
+            qs = self.queryset.filter(category_id=cat)
             return qs
+        return self.queryset.all()
 
 
 class CategoryListAPI(generics.ListAPIView):
+    queryset = Category.objects.all()
+    serializer_class = CategorySerializer
+
+
+class CategoryDetailAPI(generics.RetrieveAPIView):
     queryset = Category.objects.all()
     serializer_class = CategorySerializer
 

@@ -22,6 +22,14 @@ class Subcategory(models.Model):
         return self.name
 
 
+class ThreeSubcategory(models.Model):
+    name = models.CharField(max_length=120)
+    subcategory = models.ForeignKey(Subcategory, models.CASCADE, related_name='three_subcategory')
+
+    def __str__(self):
+        return self.name
+
+
 class Color(models.Model):
     COLORS = (
         ('FF0000', 'Red'),
@@ -60,7 +68,7 @@ class Product(models.Model):
     phone = models.BooleanField(default=False)
     type_cash = models.CharField(max_length=255)
     return_day = models.PositiveIntegerField()
-    category = models.ForeignKey(Subcategory, models.SET_NULL, null=True)
+    category = models.ForeignKey(ThreeSubcategory, models.SET_NULL, null=True)
     brand = models.ForeignKey(Brand, models.SET('No brand'), related_name='product')
     made_in = models.CharField(max_length=255)
     color = models.ManyToManyField(Color)

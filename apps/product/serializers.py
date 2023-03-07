@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Product, Category, Subcategory, ProductImage, Color, Brand
+from .models import Product, Category, Subcategory, ProductImage, Color, Brand, ThreeSubcategory
 
 
 class ColorSerializer(serializers.ModelSerializer):
@@ -20,17 +20,26 @@ class ProductImageSerializer(serializers.ModelSerializer):
         fields = ['get_image_url']
 
 
+class ThreeSubcategorySerializer(serializers.ModelSerializer):
+    class Meta:
+        model = ThreeSubcategory
+        fields = ['id', 'name']
+
+
 class SubcategorySerializer(serializers.ModelSerializer):
     class Meta:
         model = Subcategory
-        fields = ['name']
+        fields = ['id', 'name', 'three_subcategory']
+
+    three_subcategory = ThreeSubcategorySerializer(many=True, read_only=True)
 
 
 class CategorySerializer(serializers.ModelSerializer):
     class Meta:
         model = Category
-        fields = ['name', 'get_icon']
+        fields = ['id', 'name', 'get_icon', 'subcategory']
 
+    subcategory = SubcategorySerializer(many=True, read_only=True)
 
 
 class ProductSerializer(serializers.ModelSerializer):

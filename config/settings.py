@@ -30,9 +30,9 @@ DEBUG = True
 ALLOWED_HOSTS = ['*']
 CORS_ALLOW_ALL_ORIGINS = True
 if DEBUG:
-    SITE_URL = 'http://192.168.68.130:8000'
+    SITE_URL = 'http://192.168.1.28:8000'
 else:
-    SITE_URL = 'http://turiya.uz'
+    SITE_URL = 'https://turiya.uz'
 # Application definition
 
 INSTALLED_APPS = [
@@ -195,10 +195,10 @@ JAZZMIN_SETTINGS = {
 
     # List of model admins to search from the search bar, search bar omitted if excluded
     # If you want to use a single search field you dont need to use a list, you can use a simple string
-    "search_model": ["user.User", "product.Product"],
+    # "search_model": ["user.User", "product.Product"],
 
     # Field name on user model that contains avatar ImageField/URLField/Charfield or a callable that receives the user
-    "user_avatar": None,
+    # "user_avatar": None,
 
     ############
     # Top Menu #

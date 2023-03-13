@@ -30,7 +30,7 @@ DEBUG = True
 ALLOWED_HOSTS = ['*']
 CORS_ALLOW_ALL_ORIGINS = True
 if DEBUG:
-    SITE_URL = 'http://192.168.1.28:8000'
+    SITE_URL = 'http://185.217.131.162'
 else:
     SITE_URL = 'https://turiya.uz'
 # Application definition
